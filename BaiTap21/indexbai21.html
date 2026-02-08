@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bài tập 21 - Menu</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: linear-gradient(135deg,#0b1220,#111827);
+      color:#e5e7eb;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      padding:22px;
+    }
+    .wrap{width:min(920px,100%); display:grid; gap:14px;}
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .title{font-weight:900; letter-spacing:.2px;}
+    .hint{color:#cbd5e1; font-size:13px;}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 560px){ .grid{grid-template-columns:1fr;} }
+
+    a.card{
+      text-decoration:none;
+      color:inherit;
+      padding:14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      display:grid;
+      gap:6px;
+    }
+    a.card:hover{
+      transform: translateY(-2px);
+      background:rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.2);
+    }
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(59,130,246,.22);
+      border:1px solid rgba(59,130,246,.35);
+      width:max-content;
+      color:#dbeafe;
+    }
+    .name{font-size:18px; font-weight:900;}
+    .desc{font-size:13px; color:#cbd5e1;}
+    .footer{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:#e5e7eb;
+      font-weight:800;
+    }
+    .btn:hover{background:rgba(255,255,255,.10);}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="title">Bài tập 21 - Menu</div>
+        <div class="hint">Chọn bài để mở (K3, K7, K8, TK4, TK5)</div>
+      </div>
+      <div class="hint">Folder: <b>BaiTap21/</b></div>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="K3.html">
+        <span class="badge">K3</span>
+        <div class="name">Kiểm tra mật khẩu khớp</div>
+        <div class="desc">Password + Confirm Password (JS validate)</div>
+      </a>
+
+      <a class="card" href="K7.html">
+        <span class="badge">K7</span>
+        <div class="name">Parallax Scrolling</div>
+        <div class="desc">Ảnh nền cuộn khác tốc độ nội dung</div>
+      </a>
+
+      <a class="card" href="K8.html">
+        <span class="badge">K8</span>
+        <div class="name">BMI & Phân loại</div>
+        <div class="desc">Tính BMI và hiển thị phân loại</div>
+      </a>
+
+      <a class="card" href="TK4.html">
+        <span class="badge">TK4</span>
+        <div class="name">Tab View</div>
+        <div class="desc">Bấm tab → hiện/ẩn nội dung</div>
+      </a>
+
+      <a class="card" href="TK5.html">
+        <span class="badge">TK5</span>
+        <div class="name">Accordion</div>
+        <div class="desc">Toggle trượt xuống/lên (max-height + transition)</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <div class="hint">Tip: Link trong folder dùng dạng <b>K3.html</b> (không cần BaiTap21/)</div>
+      <!-- nếu muốn quay về trang chủ ở folder khác -->
+      <a class="btn" href="../704-231A290032/index.html">⬅ Về menu chính</a>
+    </div>
+  </div>
+</body>
+</html>
