@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bài 1 - Carousel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <img src="images/avatar.jpg" alt="avatar">
+        <div>704-MSSV</div>
+      </div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="baitap01.html">Bài 1</a>
+        <a href="baitap02.html">Bài 2</a>
+        <a href="baitap03.html">Bài 3</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h2 style="margin-top:0">Bài 1 (20 điểm): Carousel (>= 6 ảnh)</h2>
+      <p class="muted" style="margin-top:0">
+        Auto chuyển 3 giây, có nút next/prev, dots, dùng CSS transition và JS điều khiển index.
+      </p>
+
+      <div class="carousel">
+        <div class="carouselTrack">
+          <div class="slide"><img src="images/1.jpg" alt="1"></div>
+          <div class="slide"><img src="images/2.jpg" alt="2"></div>
+          <div class="slide"><img src="images/3.jpg" alt="3"></div>
+          <div class="slide"><img src="images/4.jpg" alt="4"></div>
+          <div class="slide"><img src="images/5.jpg" alt="5"></div>
+          <div class="slide"><img src="images/6.jpg" alt="6"></div>
+        </div>
+
+        <button class="carouselBtn prev" aria-label="prev">‹</button>
+        <button class="carouselBtn next" aria-label="next">›</button>
+        <div class="dots"></div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <h3>Giải thích logic tư duy (ngắn gọn)</h3>
+      <ul style="margin:0; padding-left:18px">
+        <li>
+          Dùng biến <b>index</b> đại diện slide hiện tại. Khi next/prev sẽ tăng/giảm index.
+        </li>
+        <li>
+          Tránh vượt giới hạn bằng công thức <b>normalize</b>:
+          <code>(i % total + total) % total</code> → luôn nằm 0..total-1.
+        </li>
+        <li>
+          Hiển thị slide bằng <b>transform: translateX(-index*100%)</b> + CSS transition
+          → mượt, dùng GPU, không reflow nhiều.
+        </li>
+        <li>
+          Tối ưu performance: update transform trong <b>requestAnimationFrame</b> và
+          <b>pause auto</b> khi hover/touch để giảm interval chạy thừa.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

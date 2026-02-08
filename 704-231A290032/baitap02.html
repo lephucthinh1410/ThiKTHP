@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bài 2 - Todo LocalStorage</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <img src="images/avatar.jpg" alt="avatar">
+        <div>704-MSSV</div>
+      </div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="baitap01.html">Bài 1</a>
+        <a href="baitap02.html">Bài 2</a>
+        <a href="baitap03.html">Bài 3</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card todoWrap" id="todoApp">
+      <div>
+        <h2 style="margin:0">Bài 2 (20 điểm): Todo + LocalStorage</h2>
+        <div class="muted">Nhập công việc → thêm → sửa/xóa. Dữ liệu lưu LocalStorage.</div>
+      </div>
+
+      <div class="todoForm">
+        <input class="input" id="todoInput" placeholder="Nhập công việc..." />
+        <button class="btn" id="todoAdd">Thêm</button>
+      </div>
+
+      <div id="todoList"></div>
+
+      <h3 style="margin-bottom:6px">Giải thích logic tư duy (ngắn gọn)</h3>
+      <ul style="margin:0; padding-left:18px">
+        <li><b>State</b> là mảng <code>todos</code> (id, text, createdAt).</li>
+        <li>Mỗi thao tác (add/edit/del) chỉ sửa mảng → <b>save()</b> → <b>render()</b>.</li>
+        <li>Render hiệu quả: dùng <b>innerHTML 1 lần</b> thay vì tạo từng node nhiều lần.</li>
+        <li>Event delegation: gắn 1 listener lên list để bắt nút sửa/xóa → nhẹ hơn.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

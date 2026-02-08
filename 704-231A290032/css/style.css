@@ -1,0 +1,249 @@
+/* ========= Base ========= */
+* { box-sizing: border-box; }
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --primary:#2563eb;
+  --primary2:#1d4ed8;
+  --danger:#dc2626;
+  --ok:#16a34a;
+  --shadow:0 12px 30px rgba(0,0,0,.08);
+  --radius:16px;
+}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: var(--bg);
+  color: var(--text);
+  line-height:1.6;
+}
+
+a{ color:inherit; text-decoration:none; }
+.container{ max-width: 980px; margin: 0 auto; padding: 18px; }
+
+.nav{
+  position: sticky; top:0; z-index:10;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.nav .inner{
+  max-width: 980px; margin:auto; padding: 12px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.brand{ display:flex; align-items:center; gap:10px; font-weight:800; }
+.brand img{ width:38px; height:38px; border-radius:50%; object-fit:cover; border:2px solid var(--border); }
+.nav .links{ display:flex; flex-wrap:wrap; gap:10px; }
+.nav .links a{
+  padding:8px 12px; border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-weight:600;
+}
+.nav .links a:hover{ border-color:#cbd5e1; }
+
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border:1px solid var(--border);
+  padding: 18px;
+}
+.grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+@media (max-width: 760px){ .grid2{ grid-template-columns: 1fr; } }
+
+.btn{
+  border:0; cursor:pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #fff;
+  font-weight:700;
+}
+.btn:hover{ background: var(--primary2); }
+.btn.ghost{
+  background:#fff; color: var(--text);
+  border:1px solid var(--border);
+}
+.btn.danger{ background: var(--danger); }
+.btn.danger:hover{ filter: brightness(.95); }
+
+.input, .textarea{
+  width:100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border:1px solid var(--border);
+  outline: none;
+  background:#fff;
+}
+.textarea{ min-height: 120px; resize: vertical; }
+.muted{ color: var(--muted); }
+
+/* ========= Home ========= */
+.hero{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 16px;
+  align-items: stretch;
+}
+@media (max-width: 860px){ .hero{ grid-template-columns: 1fr; } }
+
+.menuList{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px){ .menuList{ grid-template-columns: 1fr; } }
+
+.menuItem{
+  padding:14px;
+  border-radius: 14px;
+  border:1px solid var(--border);
+  background:#fff;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.menuItem:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+}
+.badge{
+  display:inline-block;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background:#eef2ff;
+  border:1px solid #dbeafe;
+  margin-bottom: 6px;
+}
+
+/* ========= Bài 1: Carousel ========= */
+.carousel{
+  overflow:hidden;
+  border-radius: 18px;
+  border:1px solid var(--border);
+  background:#000;
+  position:relative;
+}
+.carouselTrack{
+  display:flex;
+  transition: transform .45s ease;
+  will-change: transform; /* performance */
+}
+.slide{
+  min-width:100%;
+  height: 340px;
+  position:relative;
+}
+.slide img{
+  width:100%; height:100%;
+  object-fit: cover;
+  display:block;
+  opacity:.92;
+}
+@media (max-width: 560px){ .slide{ height: 240px; } }
+
+.carouselBtn{
+  position:absolute; top:50%;
+  transform: translateY(-50%);
+  width:44px; height:44px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.35);
+  background: rgba(17,24,39,.55);
+  color:#fff;
+  font-size: 20px;
+  cursor:pointer;
+  display:grid; place-items:center;
+}
+.carouselBtn:hover{ background: rgba(17,24,39,.7); }
+.carouselBtn.prev{ left:12px; }
+.carouselBtn.next{ right:12px; }
+
+.dots{
+  position:absolute; left:50%; bottom:12px;
+  transform: translateX(-50%);
+  display:flex; gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(17,24,39,.55);
+  border:1px solid rgba(255,255,255,.2);
+}
+.dot{
+  width:10px; height:10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.7);
+  opacity:.7;
+  cursor:pointer;
+}
+.dot.active{ background:#fff; opacity:1; }
+
+/* ========= Bài 2: Todo Grid ========= */
+.todoWrap{ display:grid; gap:14px; }
+.todoForm{ display:grid; grid-template-columns: 1fr auto; gap:10px; }
+@media (max-width: 520px){ .todoForm{ grid-template-columns: 1fr; } }
+
+.todoGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+@media (max-width: 860px){ .todoGrid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .todoGrid{ grid-template-columns: 1fr; } }
+
+.todoItem{
+  border:1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background:#fff;
+  display:grid;
+  gap:8px;
+}
+.todoTop{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+}
+.todoTitle{ font-weight:800; }
+.todoActions{ display:flex; gap:8px; }
+.todoActions button{ padding:8px 10px; border-radius:10px; }
+.todoMeta{ font-size: 12px; color: var(--muted); }
+
+/* ========= Bài 3: Guess number + fireworks ========= */
+.guessRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.fireworks{
+  position:relative;
+  height: 220px;
+  overflow:hidden;
+  border-radius: 16px;
+  border: 1px dashed var(--border);
+  background: radial-gradient(circle at 50% 70%, #111827 0%, #000 70%);
+}
+.firework{
+  position:absolute;
+  left:50%; top:55%;
+  width:8px; height:8px;
+  border-radius: 999px;
+  background:#fff;
+  opacity:0;
+  transform: translate(-50%, -50%);
+  animation: pop 900ms ease-out forwards;
+}
+.firework::before, .firework::after{
+  content:"";
+  position:absolute; inset:-40px;
+  background: conic-gradient(from 0deg, #fff, #fff0 20%, #fff, #fff0 40%, #fff);
+  mask: radial-gradient(circle, transparent 58%, #000 60%);
+  opacity:.9;
+}
+.firework:nth-child(2){ left:30%; top:60%; animation-delay:120ms; }
+.firework:nth-child(3){ left:70%; top:52%; animation-delay:220ms; }
+.firework:nth-child(4){ left:58%; top:35%; animation-delay:320ms; }
+.firework:nth-child(5){ left:42%; top:40%; animation-delay:420ms; }
+
+@keyframes pop{
+  0%{ opacity:0; transform: translate(-50%, -50%) scale(.3); filter: blur(1px); }
+  20%{ opacity:1; }
+  100%{ opacity:0; transform: translate(-50%, -50%) scale(1.7); filter: blur(0px); }
+}
+.hidden{ display:none !important; }

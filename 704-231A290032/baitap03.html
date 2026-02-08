@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bài 3 - Game đoán số</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <img src="images/avatar.jpg" alt="avatar">
+        <div>704-MSSV</div>
+      </div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="baitap01.html">Bài 1</a>
+        <a href="baitap02.html">Bài 2</a>
+        <a href="baitap03.html">Bài 3</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card" id="guessApp">
+      <h2 style="margin-top:0">Bài 3 (20 điểm): Game đoán số (1–100)</h2>
+      <p class="muted" style="margin-top:0">
+        Nhập số → báo quá cao/thấp/đúng, đếm số lần thử. Đúng thì hiện pháo hoa CSS.
+      </p>
+
+      <div class="guessRow">
+        <input class="input" id="guessInput" inputmode="numeric" placeholder="Nhập số 1-100" style="max-width:220px">
+        <button class="btn" id="guessBtn">Đoán</button>
+        <button class="btn ghost" id="guessReset">Chơi lại</button>
+        <div class="muted">Lần thử: <b id="guessTries">0</b></div>
+      </div>
+
+      <div style="height:10px"></div>
+      <div id="guessMsg">Nhập số từ 1 đến 100 để bắt đầu.</div>
+
+      <div style="height:14px"></div>
+      <div class="fireworks hidden" id="fireworks"></div>
+
+      <div style="height:14px"></div>
+      <h3 style="margin-bottom:6px">Giải thích logic tư duy (ngắn gọn)</h3>
+      <ul style="margin:0; padding-left:18px">
+        <li>Tạo số ngẫu nhiên: <code>Math.floor(Math.random()*100)+1</code>.</li>
+        <li>Validate input: kiểm tra rỗng, phải là số nguyên, trong 1..100.</li>
+        <li>Mỗi lần đoán tăng <b>tries</b> và so sánh để báo “cao/thấp/đúng”.</li>
+        <li>Khi đúng: bật khu vực pháo hoa và tạo lại các node để animation chạy lại.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
