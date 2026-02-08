@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>K8 - BMI</title>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:system-ui,Arial; margin:24px; background:#f6f7fb}
+    .card{max-width:560px; margin:auto; background:#fff; border-radius:14px; padding:18px; box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    label{display:block; margin-top:12px; font-weight:600}
+    input{width:100%; padding:10px 12px; margin-top:6px; border:1px solid #d8dbe6; border-radius:10px}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    button{margin-top:14px; width:100%; padding:11px 12px; border:0; border-radius:10px; background:#2f6bff; color:#fff; font-weight:700; cursor:pointer}
+    .out{margin-top:12px; padding:12px; border-radius:12px; background:#f3f5ff; border:1px solid #e7e9f2}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Bài tập K8: BMI</h2>
+
+    <div class="row">
+      <div>
+        <label>Cân nặng (kg)</label>
+        <input type="number" id="w" step="0.1" min="1" placeholder="VD: 60" />
+      </div>
+      <div>
+        <label>Chiều cao (m)</label>
+        <input type="number" id="h" step="0.01" min="0.5" placeholder="VD: 1.70" />
+      </div>
+    </div>
+
+    <button id="btn">Tính BMI</button>
+
+    <div class="out" id="out">Nhập số rồi bấm “Tính BMI”.</div>
+  </div>
+
+  <script>
+    const w = document.getElementById('w');
+    const h = document.getElementById('h');
+    const out = document.getElementById('out');
+    document.getElementById('btn').addEventListener('click', () => {
+      const weight = parseFloat(w.value);
+      const height = parseFloat(h.value);
+
+      if (!weight || !height || height <= 0) {
+        out.textContent = "Vui lòng nhập cân nặng và chiều cao hợp lệ.";
+        return;
+      }
+
+      const bmi = weight / (height * height);
+      let type = "";
+
+      // Phân loại phổ biến:
+      if (bmi < 18.5) type = "Thiếu cân";
+      else if (bmi < 25) type = "Bình thường";
+      else type = "Thừa cân";
+
+      out.innerHTML = `BMI = <b>${bmi.toFixed(2)}</b> → <b>${type}</b>`;
+    });
+  </script>
+</body>
+</html>

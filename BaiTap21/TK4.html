@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TK4 - Tab View</title>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:system-ui,Arial; margin:24px; background:#f6f7fb}
+    .card{max-width:780px; margin:auto; background:#fff; border-radius:14px; padding:18px; box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    h2{margin:0 0 12px}
+    .tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px}
+    .tab-btn{
+      border:1px solid #d8dbe6; background:#f3f5ff;
+      padding:10px 14px; border-radius:999px; cursor:pointer;
+      font-weight:600;
+    }
+    .tab-btn.active{background:#2f6bff; border-color:#2f6bff; color:#fff}
+    .tab-panel{display:none; padding:14px; border:1px solid #e7e9f2; border-radius:12px}
+    .tab-panel.active{display:block}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Bài tập TK4: Tab View</h2>
+
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="t1">Tab 1</button>
+      <button class="tab-btn" data-tab="t2">Tab 2</button>
+      <button class="tab-btn" data-tab="t3">Tab 3</button>
+    </div>
+
+    <div class="tab-panel active" id="t1">
+      <b>Nội dung Tab 1</b>
+      <p>Chỉ tab này hiện khi bấm Tab 1.</p>
+    </div>
+
+    <div class="tab-panel" id="t2">
+      <b>Nội dung Tab 2</b>
+      <p>Chỉ tab này hiện khi bấm Tab 2.</p>
+    </div>
+
+    <div class="tab-panel" id="t3">
+      <b>Nội dung Tab 3</b>
+      <p>Chỉ tab này hiện khi bấm Tab 3.</p>
+    </div>
+  </div>
+
+  <script>
+    const tabWrap = document.getElementById('tabs');
+    const btns = tabWrap.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    tabWrap.addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+
+      const id = btn.dataset.tab;
+
+      btns.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => p.classList.toggle('active', p.id === id));
+    });
+  </script>
+</body>
+</html>

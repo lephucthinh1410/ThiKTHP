@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>K7 - Parallax Scrolling (JS)</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,Arial; line-height:1.6; background:#f6f7fb; color:#111}
+    header{padding:26px 18px; text-align:center; background:#fff; border-bottom:1px solid #e7e9f2}
+    .wrap{max-width:980px; margin:auto; padding:18px}
+    .block{background:#fff; border-radius:14px; padding:18px; box-shadow:0 12px 30px rgba(0,0,0,.08); margin:16px 0}
+
+    /* PARALLAX SECTION */
+    .parallax{
+      position:relative;
+      height:420px;
+      border-radius:18px;
+      overflow:hidden;
+      margin:18px 0;
+      box-shadow:0 12px 30px rgba(0,0,0,.12);
+      background:#0b1220;
+    }
+    .parallax .bg{
+      position:absolute;
+      inset:0;
+      /* đổi ảnh tuỳ bạn */
+      background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=60");
+      background-size:cover;
+      background-position:center;
+      transform:translate3d(0,0,0);
+      will-change:transform;
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .parallax::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+    .parallax .content{
+      position:relative;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+      color:#fff;
+    }
+    .parallax h2{margin:0 0 8px; font-size:34px; letter-spacing:.2px}
+    .parallax p{margin:0; opacity:.92; font-size:16px}
+
+    .note{opacity:.75; font-size:14px; margin-top:10px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="margin:0 0 6px">Bài tập K7: Hiệu Ứng Parallax Scrolling</h1>
+    <div class="note">Cuộn trang xuống để thấy ảnh nền chạy chậm hơn nội dung (JS điều khiển transform).</div>
+  </header>
+
+  <div class="wrap">
+    <div class="block">
+      <h3>Phần nội dung 1</h3>
+      <p>
+        Đây là đoạn văn để tạo chiều dài trang. Bạn có thể thay bằng nội dung thật.
+        Parallax sẽ thấy rõ nhất khi trang có nhiều nội dung để cuộn.
+      </p>
+    </div>
+
+    <section class="parallax" id="parallax">
+      <div class="bg" id="parallaxBg"></div>
+      <div class="content">
+        <div>
+          <h2>Parallax Effect</h2>
+          <p>Ảnh nền cuộn chậm hơn nội dung → tạo cảm giác chiều sâu.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="block">
+      <h3>Phần nội dung 2</h3>
+      <p>
+        Cuộn tiếp để kiểm tra hiệu ứng ở nhiều vị trí khác nhau. Bạn có thể đặt nhiều
+        section parallax nếu muốn.
+      </p>
+    </div>
+
+    <div class="block">
+      <h3>Phần nội dung 3</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas repellat
+        exercitationem aliquid omnis? Natus, numquam.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, doloribus.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const parallax = document.getElementById('parallax');
+    const bg = document.getElementById('parallaxBg');
+
+    // tốc độ nền so với nội dung: 0.3 = nền chạy 30% tốc độ cuộn
+    const speed = 0.35;
+
+    let latestScrollY = 0;
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+
+      const rect = parallax.getBoundingClientRect();
+      const viewH = window.innerHeight;
+
+      // chỉ xử lý khi section còn trong/ gần viewport
+      if (rect.bottom < -200 || rect.top > viewH + 200) return;
+
+      // progress dựa trên vị trí section so với viewport
+      const offset = (viewH - rect.top) * speed;
+
+      // translateY âm/dương đều ok, ở đây dùng dương cho dễ nhìn
+      bg.style.transform = `translate3d(0, ${offset}px, 0)`;
+    }
+
+    function onScroll() {
+      latestScrollY = window.scrollY;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(update));
+    // chạy lần đầu
+    requestAnimationFrame(update);
+  </script>
+</body>
+</html>

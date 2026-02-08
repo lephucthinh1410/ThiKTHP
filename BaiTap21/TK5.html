@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TK5 - Accordion</title>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:system-ui,Arial; margin:24px; background:#f6f7fb}
+    .card{max-width:780px; margin:auto; background:#fff; border-radius:14px; padding:18px; box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    .acc-item{border:1px solid #e7e9f2; border-radius:12px; overflow:hidden; margin:10px 0}
+    .acc-header{
+      width:100%; text-align:left; padding:14px 14px;
+      background:#f3f5ff; border:0; cursor:pointer;
+      font-weight:700; display:flex; justify-content:space-between; align-items:center;
+    }
+    .acc-header span{opacity:.7}
+    .acc-body{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .35s ease;
+      background:#fff;
+    }
+    .acc-body .inner{padding:14px}
+    .acc-item.open .acc-body{max-height:240px;} /* đủ cho nội dung ngắn */
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Bài tập TK5: Accordion</h2>
+
+    <div class="acc-item">
+      <button class="acc-header">Tiêu đề 1 <span>+</span></button>
+      <div class="acc-body"><div class="inner">
+        Nội dung 1: trượt xuống / lên khi bấm tiêu đề.
+      </div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-header">Tiêu đề 2 <span>+</span></button>
+      <div class="acc-body"><div class="inner">
+        Nội dung 2: có thể thêm đoạn dài hơn tuỳ ý.
+      </div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-header">Tiêu đề 3 <span>+</span></button>
+      <div class="acc-body"><div class="inner">
+        Nội dung 3: demo accordion.
+      </div></div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.acc-item').forEach(item => {
+      const header = item.querySelector('.acc-header');
+      header.addEventListener('click', () => {
+        item.classList.toggle('open');
+        header.querySelector('span').textContent = item.classList.contains('open') ? '−' : '+';
+      });
+    });
+  </script>
+</body>
+</html>
